@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
 class Principal extends StatefulWidget {
+
+  String token;
+  int login_id;
+
+  Principal(this.token, this.login_id);
   @override
   _PrincipalState createState() => _PrincipalState();
 }
 
 class _PrincipalState extends State<Principal> {
-  int _pontuacaoPlayer = -10;
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +133,7 @@ class _PrincipalState extends State<Principal> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width,
-                  height: 200,
+                  height: 100,
                   color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

@@ -31,8 +31,6 @@ class _CadastroState extends State<Cadastro> {
                     ),
                     TextFormField(
                         textAlign: TextAlign.center,
-
-                        autofocus: true,
                         decoration: InputDecoration(
                             border: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(30.0),
@@ -57,8 +55,6 @@ class _CadastroState extends State<Cadastro> {
                     ),
                     TextFormField(
                       textAlign: TextAlign.center,
-
-                      autofocus: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),
@@ -83,8 +79,6 @@ class _CadastroState extends State<Cadastro> {
                     ),
                     TextFormField(
                       textAlign: TextAlign.center,
-
-                      autofocus: true,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(30.0),

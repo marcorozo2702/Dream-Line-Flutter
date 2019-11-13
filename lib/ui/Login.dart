@@ -1,19 +1,30 @@
+import 'package:drreamlineflutter_app/helper/Api.dart';
+import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:drreamlineflutter_app/ui/Cadastro.dart';
 import 'package:drreamlineflutter_app/ui/Principal.dart';
 
-class Login extends StatefulWidget {
+class LoginScreen extends StatefulWidget {
+
+  final LoginScreen login;
+  LoginScreen({this.login});
+
   @override
-  _LoginState createState() => _LoginState();
+  _LoginScreenState createState() => _LoginScreenState();
 }
 
-class _LoginState extends State<Login> {
+class _LoginScreenState extends State<LoginScreen> {
   //constantes
-
   final _emailFocus = FocusNode();
-
+  final _emailController= TextEditingController();
+  final _senhaController= TextEditingController();
   final _formLogin = GlobalKey<FormState>();
+
+  LoginHelper helper = LoginHelper();
+  List<Login> login = List();
+  Api api = new Api();
+
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +72,7 @@ class _LoginState extends State<Login> {
                             ),
                         focusNode: _emailFocus,
                         keyboardType: TextInputType.emailAddress,
-                        //passa o email do campo> //controller: _emailController,
+                        controller: _emailController,
                         validator: (value) {
                           if (value.isEmpty) {
                             return 'Digite seu email';
@@ -72,6 +83,7 @@ class _LoginState extends State<Login> {
                       height: 10,
                     ),
                     TextFormField(
+
                       textAlign: TextAlign.center,
                       decoration: InputDecoration(
                         border: OutlineInputBorder(
@@ -82,7 +94,7 @@ class _LoginState extends State<Login> {
                         hintText: "Senha",
                         //labelText: "Senha"
                       ),
-                      //passar a senha do campo> // controller: _senhaController,
+                      controller: _senhaController,
                       obscureText: true,
                       //valida se o campo foi preenchido
                       validator: (value) {
@@ -92,80 +104,57 @@ class _LoginState extends State<Login> {
                         return null;
                       },
                     ),
-                    SizedBox(height: 30),
+                    SizedBox(height: 10),
+                    Container(
+                      height: 60,
+                      child:RaisedButton(
+                        padding: EdgeInsets.all(10),
+                        child: Row(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Text("Entrar", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 1), ),
+                            ]),
+                        color: Colors.black87,
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30.0)),
+                        onPressed: () async {
+                          if (_formLogin.currentState.validate()) {
+                            Login user = await api.login(
+                                _emailController.text, _senhaController.text);
+                            if (user != null) {
+                              helper.saveLogado(user.id, user.token);
+                              Navigator.pop(context);
+                              await Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Principal(user.token, user.id)
+                                  ));
+                            }
+                          }
+                        }
+                      ) ,
+                    ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Flexible(
-                          child: Padding(
-                            padding: EdgeInsets.only(right: 5),
-                            child: RaisedButton(
-                              padding: EdgeInsets.all(10),
-                              child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    Text("Login", style: TextStyle(fontSize: 16),),
-                                  ]),
-                              color: Colors.black87,
-                              textColor: Colors.white,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(30.0)),
-                              onPressed: () async {
-                                Navigator.pop(context);
-                                await Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => Principal()
-                                      //PROXIMA PAGE
-                                        ));
-                              },
-                            ),
+                        FlatButton(
+                          onPressed: () async {
+                            Navigator.pop(context);
+                            await Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Cadastro()
+                                  //PROXIMA PAGE
+                                ));
+                          },
+                          child: Text(
+                            "Não possui uma conta? Cadastrar-se", style: TextStyle(color: Colors.black, fontWeight: FontWeight.w500),
                           ),
                         ),
-                        Flexible(
-                          child: Padding(
-                            padding: EdgeInsets.only(left: 5),
-                            child: RaisedButton(
-                              padding: EdgeInsets.all(10),
-                                child: Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[Text("Registrar-se", style: TextStyle(fontSize: 16),)],
-                                ),
-                                color: Colors.white,
-                                textColor: Colors.black87,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(30.0)),
-                                onPressed: () async {
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) => Cadastro(),
-                                      ),
-                                  );
-                                }),
-                          ),
-//                        child: RaisedButton(
-//                            child: Row(
-//                              crossAxisAlignment: CrossAxisAlignment.center,
-//                              mainAxisAlignment: MainAxisAlignment.center,
-//                              children: <Widget>[
-//                                Text("Cadastrar")
-//                              ],
-//                            ),
-//                            color: Colors.white,
-//                            textColor: Colors.black87,
-//                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-//                            onPressed: () async {
-//                              Navigator.push(
-//                                  context,
-//                                  MaterialPageRoute(
-//                                    //proxima page
-//                                  ));
-//                            }),
-                        )
                       ],
-                    ),
+                    )
                   ],
                 ),
               )),
