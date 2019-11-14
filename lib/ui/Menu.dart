@@ -1,7 +1,11 @@
+import 'package:drreamlineflutter_app/helper/Api.dart';
+import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Escalacao.dart';
 import 'package:drreamlineflutter_app/ui/Principal.dart';
 import 'package:drreamlineflutter_app/ui/Escalar.dart';
+
+import 'Login.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -9,6 +13,12 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  Api api = new Api();
+  LoginHelper helperLog = LoginHelper();
+
+
+
+
   int admin = 0;
 
   @override
@@ -31,7 +41,7 @@ class _MenuState extends State<Menu> {
             ),
           ),
           ListTile(
-            title: Text('Home'),
+            title: Text('Home', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             leading: Icon(
               Icons.home,
               color: Color(0x00CCFF).withOpacity(1),
@@ -50,7 +60,7 @@ class _MenuState extends State<Menu> {
               Icons.dashboard,
               color: Color(0x00CCFF).withOpacity(1),
             ),
-            title: Text('Sua Escalação'),
+            title: Text('Sua Escalação', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () {
               Navigator.push(
                 context,
@@ -61,7 +71,7 @@ class _MenuState extends State<Menu> {
             },
           ),
           ListTile(
-            title: Text('Escalar'),
+            title: Text('Escalar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             leading: Icon(
               Icons.dehaze,
               color: Color(0x00CCFF).withOpacity(1),
@@ -80,7 +90,7 @@ class _MenuState extends State<Menu> {
               Icons.supervisor_account,
               color: Color(0x00CCFF).withOpacity(1),
             ),
-            title: Text('Amigos'),
+            title: Text('Amigos', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () {
               //                    Navigator.pushReplacement(context,
               //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
@@ -92,7 +102,7 @@ class _MenuState extends State<Menu> {
               Icons.question_answer,
               color: Color(0x00CCFF).withOpacity(1),
             ),
-            title: Text('Suporte'),
+            title: Text('Suporte', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () {
               //                    Navigator.pushReplacement(context,
               //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
@@ -102,13 +112,14 @@ class _MenuState extends State<Menu> {
           ListTile(
             leading: Icon(
               Icons.power_settings_new,
-              color: Color(0x00CCFF).withOpacity(1),
+              color: Colors.red,
             ),
-            title: Text('Sair'),
-            onTap: () {
-              //                    Navigator.pushReplacement(context,
-              //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
-              //                    );
+            title: Text('Sair', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),),
+            onTap: () async{
+              await helperLog.deleteLogado();
+              Navigator.pop(context);
+              await Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => LoginScreen()));
             },
           ),
         ],

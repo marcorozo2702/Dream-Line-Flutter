@@ -1,17 +1,17 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login_helper.dart';
-//import 'pessoa_helper.dart';
 const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
 
 class Api {
   String token;
 
   Future<Login> login(String email, String senha) async {
-    http.Response response = await http.post(BASE_URL + "login",
+    http.Response response = await http.post(BASE_URL + "Login",
         body: jsonEncode({"senha": senha, "email": email}),
         headers: {'token': token, 'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
+      print(senha);
       print(response.body);
       Login dadosJson = new Login.fromMap(json.decode(response.body));
 

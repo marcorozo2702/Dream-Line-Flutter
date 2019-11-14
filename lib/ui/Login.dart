@@ -1,5 +1,6 @@
 import 'package:drreamlineflutter_app/helper/Api.dart';
 import 'package:drreamlineflutter_app/helper/login_helper.dart';
+import 'package:drreamlineflutter_app/utils/Dialogs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:drreamlineflutter_app/ui/Cadastro.dart';
@@ -22,8 +23,10 @@ class _LoginScreenState extends State<LoginScreen> {
   final _formLogin = GlobalKey<FormState>();
 
   LoginHelper helper = LoginHelper();
+  Dialogs dialog = new Dialogs();
   List<Login> login = List();
   Api api = new Api();
+
 
 
   @override
@@ -113,8 +116,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Text("Entrar", style: TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.w500, letterSpacing: 1), ),
-                            ]),
+                            Text("ENTRAR",
+                            style: TextStyle(fontSize: 20, color: Colors.white,
+                                fontWeight: FontWeight.w500, letterSpacing: 1)),                            ]),
                         color: Colors.black87,
                         textColor: Colors.white,
                         shape: RoundedRectangleBorder(
@@ -131,6 +135,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                   MaterialPageRoute(
                                       builder: (context) => Principal(user.token, user.id)
                                   ));
+                            } else{
+                              dialog.showAlertDialog(
+                                  context, 'Aviso', 'Login inválido');
                             }
                           }
                         }
@@ -142,7 +149,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         FlatButton(
                           onPressed: () async {
                             Navigator.pop(context);
-                            await Navigator.pushReplacement(
+                            await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Cadastro()

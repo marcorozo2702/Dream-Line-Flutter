@@ -5,6 +5,7 @@ import 'helper/login_helper.dart';
 import 'ui/Login.dart';
 
 void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
   LoginHelper helper = LoginHelper();
   //get login_id e token
   String logado =await helper.getLogado();
