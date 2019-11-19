@@ -10,38 +10,107 @@ class _EscalacaoState extends State<Escalacao> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Menu(),
-      appBar: AppBar(
-        title: Text('Minha line'),
-        backgroundColor: Colors.black,
-        centerTitle: true,
-      ),
-      bottomNavigationBar: BottomAppBar(
-        child: Container(
-          height: 30,
-          color: Colors.black,
+        drawer: Menu(),
+        appBar: AppBar(
+          title: Text('Minha line'),
+          backgroundColor: Colors.black,
+          centerTitle: true,
         ),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: Colors.white,
-        label: Text(
-          'Salvar',
-          style: TextStyle(color: Colors.black),
+        bottomNavigationBar: BottomAppBar(
+          child: Container(
+            height: 30,
+            color: Colors.black,
+          ),
         ),
-        icon: Icon(
-          Icons.save_alt,
-          color: Colors.black,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton: FloatingActionButton.extended(
+          backgroundColor: Colors.white,
+          label: Text(
+            'Salvar',
+            style: TextStyle(color: Colors.black),
+          ),
+          icon: Icon(
+            Icons.save_alt,
+            color: Colors.black,
+          ),
+          onPressed: () {},
         ),
-        onPressed: () {},
-      ),
-      body: ListView.builder(
-          padding: EdgeInsets.all(10.0),
-         itemCount: 5,
-          itemBuilder: (context, index) {
-            return _contactCard(context, index);
-          }
-      )
+        body: Container(
+            padding: EdgeInsets.all(20),
+            color: Colors.white,
+            child: ListView(
+              children: <Widget>[
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                        height: 120,
+                        margin: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+
+                            color: Colors.white),
+                        child: Image(
+                          image: AssetImage("images/ic_logo.png"),
+                        )
+                      ),
+                  ],
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 120,
+                        margin: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(width: 1, color: Colors.grey),
+                            color: Colors.white),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 120,
+                        margin: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(width: 1, color: Colors.grey),
+                            color: Colors.white),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                    Expanded(
+                      flex: 1,
+                      child: Container(
+                        height: 120,
+                        margin: EdgeInsets.all(4),
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(width: 1, color: Colors.grey),
+                            color: Colors.white),
+                        child: Icon(
+                          Icons.add,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ))
     );
   }
 
@@ -53,54 +122,48 @@ class _EscalacaoState extends State<Escalacao> {
             padding: EdgeInsets.all(10.0),
             child: Row(
               children: <Widget>[
-                Container(
-                  width: 50.0,
-                  height: 50.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image:
-//                          players[index].img != null? FileImage(File(contacts[index].img)) :
-                        AssetImage('images/user.png')),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    margin: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.blue[100]),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.blue,
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        "Coldzera" ,
-//                          players[index].nameplayer ?? "",    PLAYERS ESCALADOS
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        '52.10',
-//                          players[index].pontuacao ?? "",
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Color(0x00ccff).withOpacity(1),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.end,
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        'FaZe',
-//                          players[index].nameteam ?? "",
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.end,
-                      ),
-                    ],
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    margin: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.blue[100]),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.blue,
+                    ),
                   ),
-                )
+                ),
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: 100,
+                    margin: EdgeInsets.all(4),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8),
+                        color: Colors.blue[100]),
+                    child: Icon(
+                      Icons.add,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
               ],
             ),
           )),
@@ -109,10 +172,6 @@ class _EscalacaoState extends State<Escalacao> {
       },
     );
   }
-
-
-
-
 
 
   void _showOptions(BuildContext context, int index) {
@@ -133,7 +192,8 @@ class _EscalacaoState extends State<Escalacao> {
                       child: FlatButton(
                         child: Row(
                           children: <Widget>[
-                            Icon(Icons.info, color: Color(0x00ccff).withOpacity(1)),
+                            Icon(Icons.info,
+                                color: Color(0x00ccff).withOpacity(1)),
                             Padding(
                                 padding: EdgeInsets.only(left: 10),
                                 child: Column(
@@ -141,7 +201,8 @@ class _EscalacaoState extends State<Escalacao> {
                                     Text(
                                       'Informações',
                                       style: TextStyle(
-                                          color: Color(0x00ccff).withOpacity(1), fontSize: 20.0),
+                                          color: Color(0x00ccff).withOpacity(1),
+                                          fontSize: 20.0),
                                     )
                                   ],
                                 ))

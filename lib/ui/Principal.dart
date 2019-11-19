@@ -48,8 +48,11 @@ class _PrincipalState extends State<Principal> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
+                  decoration: new BoxDecoration(
+                      color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
+                      borderRadius: new BorderRadius.circular(10.0)
+                  ),
                   padding: EdgeInsets.all(8),
-                  color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -98,13 +101,16 @@ class _PrincipalState extends State<Principal> {
                   ),
                 ),
                 SizedBox(
-                  height: 5,
+                  height: 10,
                 ),
                 Container(
+                  decoration: new BoxDecoration(
+                      color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
+                      borderRadius: new BorderRadius.circular(10.0)
+                  ),
                   alignment: Alignment.center,
                   width: MediaQuery.of(context).size.width,
                   padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                  color: Colors.white,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

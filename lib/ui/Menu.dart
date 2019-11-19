@@ -5,6 +5,7 @@ import 'package:drreamlineflutter_app/ui/Escalacao.dart';
 import 'package:drreamlineflutter_app/ui/ListaPlayer.dart';
 
 import 'Login.dart';
+import 'Principal.dart';
 
 class Menu extends StatefulWidget {
   @override
@@ -45,11 +46,15 @@ class _MenuState extends State<Menu> {
               Icons.home,
               color: Color(0x00CCFF).withOpacity(1),
             ),
-            onTap: () {
+            onTap: () async {
+              LoginHelper helper = LoginHelper();
+              String logado = await helperLog.getLogado();
+              int login_id =await helper.getLogadoid();
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  //builder: (context) => Principal(),
+                  builder: (context) => Principal(logado, login_id),
                 ),
               );
             },
@@ -61,7 +66,7 @@ class _MenuState extends State<Menu> {
             ),
             title: Text('Sua Escalação', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () {
-              Navigator.push(
+              Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
                   builder: (context) => Escalacao(),
