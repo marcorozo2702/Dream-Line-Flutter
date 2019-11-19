@@ -66,25 +66,6 @@ class _ListaPlayerState extends State<ListaPlayer> {
                 onSelected: _orderList)
           ],
         ),
-        bottomNavigationBar: BottomAppBar(
-          child: Container(
-            height: 30,
-            color: Colors.black,
-          ),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: FloatingActionButton.extended(
-          backgroundColor: Colors.white,
-          label: Text(
-            'Salvar',
-            style: TextStyle(color: Colors.black),
-          ),
-          icon: Icon(
-            Icons.save_alt,
-            color: Colors.black,
-          ),
-          onPressed: () {},
-        ),
         body: WillPopScope(
             child: (isLoading || jogador == null)
                 ? Center(
