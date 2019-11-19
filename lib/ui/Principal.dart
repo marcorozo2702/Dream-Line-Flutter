@@ -13,6 +13,14 @@ class Principal extends StatefulWidget {
 
 class _PrincipalState extends State<Principal> {
 
+
+  @override
+  void initState() {
+    super.initState();
+    print(widget.token);
+
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +48,7 @@ class _PrincipalState extends State<Principal> {
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: EdgeInsets.all(8),
                   color: Colors.white,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,

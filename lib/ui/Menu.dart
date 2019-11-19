@@ -2,8 +2,7 @@ import 'package:drreamlineflutter_app/helper/Api.dart';
 import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Escalacao.dart';
-import 'package:drreamlineflutter_app/ui/Principal.dart';
-import 'package:drreamlineflutter_app/ui/Escalar.dart';
+import 'package:drreamlineflutter_app/ui/ListaPlayer.dart';
 
 import 'Login.dart';
 
@@ -71,16 +70,19 @@ class _MenuState extends State<Menu> {
             },
           ),
           ListTile(
-            title: Text('Escalar', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
+            title: Text('Players', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             leading: Icon(
               Icons.dehaze,
               color: Color(0x00CCFF).withOpacity(1),
             ),
-            onTap: () {
+            onTap: () async {
+              String logado = await helperLog.getLogado();
+              print(logado.toString() + 'aaaaa');
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Escalar(),
+                  builder: (context) => ListaPlayer(logado),
                 ),
               );
             },

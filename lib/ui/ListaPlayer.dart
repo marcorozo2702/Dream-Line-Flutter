@@ -1,21 +1,70 @@
+import 'package:drreamlineflutter_app/helper/Api.dart';
+import 'package:drreamlineflutter_app/helper/jogador_helper.dart';
+import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
 
-class Escalar extends StatefulWidget {
+
+
+class ListaPlayer extends StatefulWidget {
+
+  String token;
+  ListaPlayer(this.token);
+
+
   @override
-  _EscalarState createState() => _EscalarState();
+  _ListaPlayerState createState() => _ListaPlayerState();
+
+
+
 }
 
-class _EscalarState extends State<Escalar> {
+enum OrderOptions { orderaz, orderza }
+
+
+class _ListaPlayerState extends State<ListaPlayer> {
+
+  LoginHelper helperLog = LoginHelper();
+  JogadorHelper helper = JogadorHelper();
+  List<Jogador> jogador = List();
+  Api api = new Api();
+
+  var isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isLoading = true;
+    print(widget.token);
+    _getAllJogadores();
+  }
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: Menu(),
         appBar: AppBar(
-          title: Text('Jogadores disponíveis'),
+          title: Text('Jogadores'),
           backgroundColor: Colors.black,
           centerTitle: true,
+          actions: <Widget>[
+            PopupMenuButton<OrderOptions>(
+                itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+                  const PopupMenuItem<OrderOptions>(
+                    child: Text('Ordenar de A-Z'),
+                    value: OrderOptions.orderaz,
+                  ),
+                  const PopupMenuItem<OrderOptions>(
+                    child: Text('Ordenar de Z-A'),
+                    value: OrderOptions.orderza,
+                  ),
+                ],
+                onSelected: _orderList)
+          ],
         ),
         bottomNavigationBar: BottomAppBar(
           child: Container(
@@ -36,27 +85,36 @@ class _EscalarState extends State<Escalar> {
           ),
           onPressed: () {},
         ),
-        body: ListView.builder(
-            padding: EdgeInsets.all(10.0),
-            itemCount: 10,
-            itemBuilder: (context, index) {
-              return _contactCard(context, index);
-            }
-        )
+        body: WillPopScope(
+            child: (isLoading || jogador == null)
+                ? Center(
+              child: CircularProgressIndicator(),
+            )
+                : ListView.builder(
+                padding: EdgeInsets.all(10.0),
+                itemCount: jogador.length,
+                itemBuilder: (context, index) {
+                  return _jogadorCard(context, index);
+                }),
+            onWillPop: () {
+              return null;
+            })
     );
   }
 
 
-  Widget _contactCard(BuildContext context, int index) {
+  Widget _jogadorCard(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Container(
-                  width: 50.0,
-                  height: 50.0,
+                  width: 48.0,
+                  height: 48.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(
@@ -69,11 +127,10 @@ class _EscalarState extends State<Escalar> {
                   padding: EdgeInsets.only(left: 10.0),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       Text(
-                        "Fer" ,
-//                          players[index].nameplayer ?? "",    PLAYERS ESCALADOS
+                        jogador[index].nome,
                         style: TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold),
                       ),
@@ -81,8 +138,7 @@ class _EscalarState extends State<Escalar> {
                         width: 30,
                       ),
                       Text(
-                        '36.50',
-//                          players[index].pontuacao ?? "",
+                        jogador[index].nome_time,
                         style: TextStyle(
                             fontSize: 20.0,
                             color: Color(0x00ccff).withOpacity(1),
@@ -93,8 +149,7 @@ class _EscalarState extends State<Escalar> {
                         width: 30,
                       ),
                       Text(
-                        'Rating',
-//                          players[index].rating ?? "",
+                        jogador[index].rating,
                         style: TextStyle(
                             fontSize: 18.0, fontWeight: FontWeight.bold),
                         textAlign: TextAlign.end,
@@ -111,6 +166,23 @@ class _EscalarState extends State<Escalar> {
     );
   }
 
+
+
+  void _orderList(OrderOptions result) async {
+    switch (result) {
+      case OrderOptions.orderaz:
+        jogador.sort((a, b) {
+          return a.nome.toLowerCase().compareTo(b.nome.toLowerCase());
+        });
+        break;
+      case OrderOptions.orderza:
+        jogador.sort((a, b) {
+          return b.nome.toLowerCase().compareTo(a.nome.toLowerCase());
+        });
+        break;
+    }
+    setState(() {});
+  }
 
 
   void _showOptions(BuildContext context, int index) {
@@ -146,9 +218,6 @@ class _EscalarState extends State<Escalar> {
                           ],
                         ),
                         onPressed: () {
-//                          launch(
-//                              "mailto:${contacts[index].email}?subject=Olá&body=Boa tarde, tudo bem?");
-//                          Navigator.pop(context);
                         },
                       ),
                     ),
@@ -171,11 +240,7 @@ class _EscalarState extends State<Escalar> {
                                 ))
                           ],
                         ),
-                        onPressed: () {
-//                          launch(
-//                              "mailto:${contacts[index].email}?subject=Olá&body=Boa tarde, tudo bem?");
-//                          Navigator.pop(context);
-                        },
+                        onPressed: () {},
                       ),
                     ),
                   ],
@@ -184,6 +249,17 @@ class _EscalarState extends State<Escalar> {
             },
           );
         });
+  }
+
+
+
+  _getAllJogadores() async {
+    api.jogadores(widget.token).then((list) {
+      setState(() {
+        isLoading = false;
+        jogador = list;
+      });
+    });
   }
 
 

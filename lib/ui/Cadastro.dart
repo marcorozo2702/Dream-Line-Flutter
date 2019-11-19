@@ -136,10 +136,8 @@ class _CadastroState extends State<Cadastro> {
                           null) {
                         Login user = await api.login(
                             _emailController.text, _senhaController.text);
-                        //Navigator.pop(context);
                         if (user != null) {
                           helper.saveLogado(user.id, user.token);
-                          //Navigator.pop(context);
                           Navigator.push(
                               context,
                               MaterialPageRoute(

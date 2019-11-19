@@ -1,6 +1,7 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login_helper.dart';
+import 'jogador_helper.dart';
 const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
 
 class Api {
@@ -28,6 +29,20 @@ class Api {
     if (response.statusCode == 200) {
       Login dadosJson = new Login.fromMap(json.decode(response.body));
       return dadosJson;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<Jogador>> jogadores(String token) async {
+    http.Response response = await http.get(BASE_URL + 'Jogador',
+        headers: {'token': token, 'Content-Type': 'application/json'});
+    print(response.body);
+    if (response.statusCode == 200) {
+      List<Jogador> jogadores = json.decode(response.body).map<Jogador>((map) {
+        return Jogador.fromJson(map);
+      }).toList();
+      return jogadores;
     } else {
       return null;
     }
