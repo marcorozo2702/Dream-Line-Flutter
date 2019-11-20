@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
@@ -45,16 +46,16 @@ class _EscalacaoState extends State<Escalacao> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
+                        width: 120,
                         height: 120,
-                        margin: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-
-                            color: Colors.white),
-                        child: Image(
-                          image: AssetImage("images/ic_logo.png"),
-                        )
+                      decoration: new BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: new DecorationImage(
+                          fit: BoxFit.cover,
+                          image: new AssetImage("images/ic_logo.png"),
+                        ),
                       ),
+                    ),
                   ],
                 ),
                 SizedBox(
@@ -63,116 +64,189 @@ class _EscalacaoState extends State<Escalacao> {
                 Row(
                   children: <Widget>[
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 120,
-                        margin: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(width: 1, color: Colors.grey),
-                            color: Colors.white),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
+                        flex: 1,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )),
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 120,
-                        margin: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(width: 1, color: Colors.grey),
-                            color: Colors.white),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
+                        flex: 1,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: <Widget>[
+                            Text(
+                              "nome_equipe",
+                              textAlign: TextAlign.center,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Expanded(child: Divider(color: Colors.black)),
+                              ],
+                            ),
+                            Container(
+                                height: 100,
+                                margin: EdgeInsets.all(4),
+                              decoration: new BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: new DecorationImage(
+                                  fit: BoxFit.cover,
+                                  image: new AssetImage("images/ic_logo.png"),
+                                ),
+                              ),
+                            ),
+                          ],
+                        )),
                     Expanded(
-                      flex: 1,
-                      child: Container(
-                        height: 120,
-                        margin: EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            border: Border.all(width: 1, color: Colors.grey),
-                            color: Colors.white),
-                        child: Icon(
-                          Icons.add,
-                          color: Colors.grey,
-                        ),
-                      ),
-                    ),
+                        flex: 1,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )),
+                  ],
+                ),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )),
+                    Expanded(
+                        flex: 1,
+                        child: InkWell(
+                          onTap: () {},
+                          child: Container(
+                            height: 100,
+                            margin: EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                border:
+                                    Border.all(width: 1, color: Colors.grey),
+                                color: Colors.white),
+                            child: Icon(
+                              Icons.add,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        )),
                   ],
                 ),
               ],
-            ))
-    );
+            )));
   }
-
 
   Widget _contactCard(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
           child: Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 100,
-                    margin: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.blue[100]),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.blue,
-                    ),
-                  ),
+        padding: EdgeInsets.all(10.0),
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 100,
+                margin: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.blue[100]),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.blue,
                 ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 100,
-                    margin: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.blue[100]),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  flex: 1,
-                  child: Container(
-                    height: 100,
-                    margin: EdgeInsets.all(4),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(8),
-                        color: Colors.blue[100]),
-                    child: Icon(
-                      Icons.add,
-                      color: Colors.blue,
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          )),
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 100,
+                margin: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.blue[100]),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 100,
+                margin: EdgeInsets.all(4),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.blue[100]),
+                child: Icon(
+                  Icons.add,
+                  color: Colors.blue,
+                ),
+              ),
+            ),
+          ],
+        ),
+      )),
       onTap: () {
         _showOptions(context, index);
       },
     );
   }
-
 
   void _showOptions(BuildContext context, int index) {
     showModalBottomSheet(

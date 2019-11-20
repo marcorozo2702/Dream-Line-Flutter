@@ -2,7 +2,9 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login_helper.dart';
 import 'jogador_helper.dart';
-const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
+//const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
+const BASE_URL = "http://10.10.198.225/dreamline/rest/";
+
 
 class Api {
   String token;
