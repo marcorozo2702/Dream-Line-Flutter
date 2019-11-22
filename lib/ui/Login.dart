@@ -125,15 +125,17 @@ class _LoginScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(30.0)),
                         onPressed: () async {
                           if (_formLogin.currentState.validate()) {
-                            Login user = await api.login(
+                            Logado user = await api.login(
                                 _emailController.text, _senhaController.text);
                             if (user != null) {
-                              helper.saveLogado(user.id, user.token);
+                              helper.saveLogado(user.id, user.token, user.nome, user.email, user.nomeequipe);
+//                              print(user.nome);
+                              print(user.nomeequipe);
                               Navigator.pop(context);
                               await Navigator.pushReplacement(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => Principal(user.token, user.id)
+                                      builder: (context) => Principal(user.token, user.id, user.nome, user.nomeequipe)
                                   ));
                             } else{
                               dialog.showAlertDialog(

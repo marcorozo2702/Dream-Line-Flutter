@@ -20,6 +20,7 @@ class _CadastroState extends State<Cadastro> {
   final _nomeController = TextEditingController();
   final _emailController = TextEditingController();
   final _senhaController = TextEditingController();
+  final _nomeequipeController = TextEditingController();
   final _emailFocus = FocusNode();
   final _formCadastro = GlobalKey<FormState>();
 
@@ -112,6 +113,28 @@ class _CadastroState extends State<Cadastro> {
                 SizedBox(
                   height: 10,
                 ),
+                TextFormField(
+                  controller: _nomeequipeController,
+                  textAlign: TextAlign.center,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(30.0),
+                      borderSide: BorderSide(
+                          style: BorderStyle.solid, color: Colors.black),
+                    ),
+                    hintText: "Nome do seu time",
+                    //labelText: "Senha"
+                  ),
+//                  validator: (value) {
+//                    if (value.isEmpty) {
+//                      return 'Digite seu nome';
+//                    }
+//                    return null;
+//                  },
+                ),
+                SizedBox(
+                  height: 10,
+                ),
                 RaisedButton(
                   padding: EdgeInsets.all(20),
                   child: Row(
@@ -134,15 +157,17 @@ class _CadastroState extends State<Cadastro> {
                           _emailController.text,
                           _senhaController.text) !=
                           null) {
-                        Login user = await api.login(
+                        Logado user = await api.login(
                             _emailController.text, _senhaController.text);
                         if (user != null) {
-                          helper.saveLogado(user.id, user.token);
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) =>
-                                      Principal(user.token, user.id)));
+                          helper.saveLogado(user.id, user.token, user.nome, user.email, user.nomeequipe);
+                          if(await api.cadastroequipe(_nomeequipeController.text, user.id, user.token)){
+                          }
+//                          Navigator.push(
+//                              context,
+//                              MaterialPageRoute(
+//                                  builder: (context) =>
+//                                      Principal(user.token, user.id)));
                         }
                       } else {
                         dialog.showAlertDialog(

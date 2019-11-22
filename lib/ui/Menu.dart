@@ -49,12 +49,13 @@ class _MenuState extends State<Menu> {
             onTap: () async {
               LoginHelper helper = LoginHelper();
               String logado = await helperLog.getLogado();
+              Logado users = await helper.getInfoLogado();
               int login_id =await helper.getLogadoid();
 
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Principal(logado, login_id),
+                  builder: (context) => Principal(logado, login_id, users.nome, users.nomeequipe),
                 ),
               );
             },

@@ -9,15 +9,13 @@ const BASE_URL = "http://10.10.198.225/dreamline/rest/";
 class Api {
   String token;
 
-  Future<Login> login(String email, String senha) async {
+  Future<Logado> login(String email, String senha) async {
     http.Response response = await http.post(BASE_URL + "Login",
         body: jsonEncode({"senha": senha, "email": email}),
         headers: {'token': token, 'Content-Type': 'application/json'});
     if (response.statusCode == 200) {
-      print(senha);
       print(response.body);
-      Login dadosJson = new Login.fromMap(json.decode(response.body));
-
+      Logado dadosJson = new Logado.fromMap(json.decode(response.body));
       return dadosJson;
     } else {
       return null;
@@ -31,6 +29,19 @@ class Api {
     if (response.statusCode == 200) {
       Login dadosJson = new Login.fromMap(json.decode(response.body));
       return dadosJson;
+    } else {
+      return null;
+    }
+  }
+
+  Future<bool> cadastroequipe(String nomeequipe, int cd_usuario, String token) async {
+    http.Response response = await http.post(BASE_URL + "equipe",
+        body: jsonEncode({"nome": nomeequipe, "cd_usuario": cd_usuario}),
+        headers: {'token': token, 'Content-Type': 'application/json'});
+    print(response.body + " XALALA");
+    if (response.statusCode == 200) {
+      print(jsonDecode(response.body) + " \n XERERE");
+      return null;
     } else {
       return null;
     }

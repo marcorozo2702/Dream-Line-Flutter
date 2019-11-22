@@ -1,12 +1,15 @@
+import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
 class Principal extends StatefulWidget {
 
   String token;
-  int login_id;
+  String nome;
+  dynamic login_id;
+  String nomeequipe;
 
-  Principal(this.token, this.login_id);
+  Principal(this.token, this.login_id, this.nome, this.nomeequipe);
   @override
   _PrincipalState createState() => _PrincipalState();
 }
@@ -14,11 +17,11 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
 
 
+
   @override
   void initState() {
     super.initState();
     print(widget.token);
-
   }
 
   @override
@@ -76,7 +79,7 @@ class _PrincipalState extends State<Principal> {
                           Row(
                             children: <Widget>[
                               Text(
-                                "MIBR",
+                                widget.nomeequipe,
                                 style: TextStyle(
                                     fontSize: 22,
                                     color: Colors.black,
@@ -87,9 +90,9 @@ class _PrincipalState extends State<Principal> {
                           Row(
                             children: <Widget>[
                               Text(
-                                "Marco Antonio Rozo",
+                                widget.nome,
                                 style: TextStyle(
-                                    fontSize: 12,
+                                    fontSize: 20,
                                     color: Colors.black,
                                     fontFamily: 'Saira'),
                               ),
@@ -163,4 +166,5 @@ class _PrincipalState extends State<Principal> {
       ),
     );
   }
+
 }

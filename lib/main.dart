@@ -9,6 +9,7 @@ void main() async{
   LoginHelper helper = LoginHelper();
   //get login_id e token
   String logado =await helper.getLogado();
+  Logado users = await helper.getInfoLogado();
   int login_id =await helper.getLogadoid();
 
   SystemChrome.setPreferredOrientations([
@@ -17,7 +18,7 @@ void main() async{
   ]);
 
   runApp(MaterialApp(
-    home: (logado != null) ? Principal(logado, login_id) : LoginScreen(),
+    home: (logado != null) ? Principal(logado, login_id, users.nome, users.nomeequipe) : LoginScreen(),
     debugShowCheckedModeBanner: false,
   ));
 }
