@@ -66,11 +66,14 @@ class _MenuState extends State<Menu> {
               color: Color(0x00CCFF).withOpacity(1),
             ),
             title: Text('Sua Escalação', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
-            onTap: () {
+            onTap: () async {
+              String logado = await helperLog.getLogado();
+              print(logado.toString() + 'aaaaa');
+
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => Escalacao(),
+                  builder: (context) => Escalacao(logado),
                 ),
               );
             },

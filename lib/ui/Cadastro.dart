@@ -155,26 +155,17 @@ class _CadastroState extends State<Cadastro> {
                       if (await api.cadastro(
                           _nomeController.text,
                           _emailController.text,
-                          _senhaController.text) !=
+                          _senhaController.text,
+                          _nomeequipeController.text) !=
                           null) {
-                        Logado user = await api.login(
-                            _emailController.text, _senhaController.text);
-                        if (user != null) {
-                          helper.saveLogado(user.id, user.token, user.nome, user.email, user.nomeequipe);
-                          if(await api.cadastroequipe(_nomeequipeController.text, user.id, user.token)){
-                          }
-//                          Navigator.push(
-//                              context,
-//                              MaterialPageRoute(
-//                                  builder: (context) =>
-//                                      Principal(user.token, user.id)));
-                        }
+                        Navigator.pop(context);
                       } else {
                         dialog.showAlertDialog(
                             context, 'Aviso', 'Usuário não cadastrado');
                       }
                     }
                   },
+
                 ),
                 SizedBox(
                   height: 20,

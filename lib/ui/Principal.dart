@@ -126,7 +126,8 @@ class _PrincipalState extends State<Principal> {
                       ),
                       Row(
                         children: <Widget>[
-                          Expanded(child: Divider(color: Colors.black)),
+                          Expanded(child: Divider(
+                              color: Colors.black)),
                         ],
                       ),
                       Text(

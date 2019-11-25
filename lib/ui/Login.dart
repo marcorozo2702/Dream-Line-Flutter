@@ -129,7 +129,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _emailController.text, _senhaController.text);
                             if (user != null) {
                               helper.saveLogado(user.id, user.token, user.nome, user.email, user.nomeequipe);
-//                              print(user.nome);
                               print(user.nomeequipe);
                               Navigator.pop(context);
                               await Navigator.pushReplacement(
@@ -150,8 +149,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: <Widget>[
                         FlatButton(
                           onPressed: () async {
-                            Navigator.pop(context);
-                            await Navigator.push(
+                            print('cadastro page')
+;                            await Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => Cadastro()

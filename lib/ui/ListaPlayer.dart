@@ -86,7 +86,8 @@ class _ListaPlayerState extends State<ListaPlayer> {
 
   Widget _jogadorCard(BuildContext context, int index) {
     return GestureDetector(
-      child: Card(
+      child:
+      Card(
           child: Padding(
             padding: EdgeInsets.all(10.0),
             child: Row(
@@ -104,40 +105,46 @@ class _ListaPlayerState extends State<ListaPlayer> {
                         AssetImage('images/user.png')),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.only(left: 10.0),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        jogador[index].nome,
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        jogador[index].nome_time,
-                        style: TextStyle(
-                            fontSize: 20.0,
-                            color: Color(0x00ccff).withOpacity(1),
-                            fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.end,
-                      ),
-                      SizedBox(
-                        width: 30,
-                      ),
-                      Text(
-                        jogador[index].rating,
-                        style: TextStyle(
-                            fontSize: 18.0, fontWeight: FontWeight.bold),
-                        textAlign: TextAlign.end,
-                      ),
-                    ],
-                  ),
-                )
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text("Player name"),
+                    Text(
+                      jogador[index].nome,
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 30,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text("Time"),
+                    Text(
+                      jogador[index].nome_time,
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 10,
+                ),
+                Column(
+
+                  children: <Widget>[
+                    Text("Média Rating"),
+                    Text(
+                      jogador[index].rating,
+                      style: TextStyle(
+                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                    ),
+                  ],
+                ),
               ],
             ),
           )),

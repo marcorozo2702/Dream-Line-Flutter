@@ -1,13 +1,49 @@
+import 'package:drreamlineflutter_app/helper/Api.dart';
+import 'package:drreamlineflutter_app/helper/jogador_helper.dart';
+import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
 class Escalacao extends StatefulWidget {
+
+  String token;
+  Escalacao(this.token);
+
+
+
   @override
   _EscalacaoState createState() => _EscalacaoState();
 }
 
 class _EscalacaoState extends State<Escalacao> {
+
+  LoginHelper helperLog = LoginHelper();
+  JogadorHelper helper = JogadorHelper();
+  List<Jogador> jogador = List();
+  Api api = new Api();
+
+
+  //DROPD
+  String _selectedPlayer1;
+  String _selectedPlayer2;
+  String _selectedPlayer3;
+  String _selectedPlayer4;
+  String _selectedPlayer5;
+
+
+
+  var isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    isLoading = true;
+    print(widget.token);
+    _getAllJogadores();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +72,19 @@ class _EscalacaoState extends State<Escalacao> {
           ),
           onPressed: () {},
         ),
-        body: Container(
+        body: (isLoading || jogador == null)
+            ? Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              CircularProgressIndicator(),
+              SizedBox(height: 30,),
+              Text("Buscando informações \n necessárias...", style: TextStyle(color: Colors.blue[300], fontSize: 20), textAlign: TextAlign.center,)
+            ],
+          ),
+        )
+            :  Container(
             padding: EdgeInsets.all(20),
             color: Colors.white,
             child: ListView(
@@ -46,8 +94,8 @@ class _EscalacaoState extends State<Escalacao> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Container(
-                        width: 120,
-                        height: 120,
+                      width: 120,
+                      height: 120,
                       decoration: new BoxDecoration(
                         shape: BoxShape.circle,
                         image: new DecorationImage(
@@ -61,268 +109,166 @@ class _EscalacaoState extends State<Escalacao> {
                 SizedBox(
                   height: 20,
                 ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100,
-                            margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              "nome_equipe",
-                              textAlign: TextAlign.center,
-                            ),
-                            Row(
-                              children: <Widget>[
-                                Expanded(child: Divider(color: Colors.black)),
-                              ],
-                            ),
-                            Container(
-                                height: 100,
-                                margin: EdgeInsets.all(4),
-                              decoration: new BoxDecoration(
-                                shape: BoxShape.circle,
-                                image: new DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: new AssetImage("images/ic_logo.png"),
-                                ),
-                              ),
-                            ),
-                          ],
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100,
-                            margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
-                  ],
+          Container(
+            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(20.0),
+                border: Border.all(color: Colors.blueGrey)),
+            child: DropdownButtonHideUnderline(
+              child: DropdownButton(
+                hint: Text(
+                  '    Selecione o player 1',
+                  style: TextStyle(
+                      color: Colors.black.withOpacity(0.5),
+                      fontWeight: FontWeight.bold,
+                  ),
                 ),
-                Row(
-                  children: <Widget>[
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100,
-                            margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100,
-                            margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
-                    Expanded(
-                        flex: 1,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Container(
-                            height: 100,
-                            margin: EdgeInsets.all(4),
-                            decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                border:
-                                    Border.all(width: 1, color: Colors.grey),
-                                color: Colors.white),
-                            child: Icon(
-                              Icons.add,
-                              color: Colors.grey,
-                            ),
-                          ),
-                        )),
-                  ],
+                items: jogador?.map((item) {
+                  return new DropdownMenuItem(
+                    child: Text("     " + item.nome.toString()+ '  -  ' + item.nome_time.toString()),
+                    value: item.id.toString(),
+                  );
+                }).toList() ??
+                    [],
+                onChanged: (value) {
+                  setState(() {
+                    _selectedPlayer1 = value;
+                  });
+                },
+                value: _selectedPlayer1,
+              ),
+            ),
+          ),
+                Container(
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: Colors.blueGrey)),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      hint: Text(
+                        '    Selecione o player 1',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      items: jogador?.map((item) {
+                        return new DropdownMenuItem(
+                          child: Text("     " + item.nome.toString() + '  -  ' + item.nome_time.toString()),
+                          value: item.id.toString(),
+                        );
+                      }).toList() ??
+                          [],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPlayer2 = value;
+                        });
+                      },
+                      value: _selectedPlayer2,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: Colors.blueGrey)),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      hint: Text(
+                        '    Selecione o player 1',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      items: jogador?.map((item) {
+                        return new DropdownMenuItem(
+                          child: Text("     " + item.nome.toString() + '  -  ' + item.nome_time.toString()),
+                          value: item.id.toString(),
+                        );
+                      }).toList() ??
+                          [],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPlayer3 = value;
+                        });
+                      },
+                      value: _selectedPlayer3,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: Colors.blueGrey)),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      hint: Text(
+                        '    Selecione o player 1',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      items: jogador?.map((item) {
+                        return new DropdownMenuItem(
+                          child: Text("     " + item.nome.toString() + '  -  ' + item.nome_time.toString()),
+                          value: item.id.toString(),
+                        );
+                      }).toList() ??
+                          [],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPlayer4 = value;
+                        });
+                      },
+                      value: _selectedPlayer4,
+                    ),
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(20.0),
+                      border: Border.all(color: Colors.blueGrey)),
+                  child: DropdownButtonHideUnderline(
+                    child: DropdownButton(
+                      hint: Text(
+                        '    Selecione o player 1',
+                        style: TextStyle(
+                          color: Colors.black.withOpacity(0.5),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      items: jogador?.map((item) {
+                        return new DropdownMenuItem(
+                          child: Text("     " + item.nome.toString() + '  -  ' + item.nome_time.toString()),
+                          value: item.id.toString(),
+                        );
+                      }).toList() ??
+                          [],
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedPlayer5 = value;
+                        });
+                      },
+                      value: _selectedPlayer5,
+                    ),
+                  ),
                 ),
               ],
             )));
   }
 
-  Widget _contactCard(BuildContext context, int index) {
-    return GestureDetector(
-      child: Card(
-          child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          children: <Widget>[
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: 100,
-                margin: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.blue[100]),
-                child: Icon(
-                  Icons.add,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: 100,
-                margin: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.blue[100]),
-                child: Icon(
-                  Icons.add,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Container(
-                height: 100,
-                margin: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.blue[100]),
-                child: Icon(
-                  Icons.add,
-                  color: Colors.blue,
-                ),
-              ),
-            ),
-          ],
-        ),
-      )),
-      onTap: () {
-        _showOptions(context, index);
-      },
-    );
-  }
-
-  void _showOptions(BuildContext context, int index) {
-    showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return BottomSheet(
-            onClosing: () {},
-            builder: (context) {
-              return Container(
-                padding: EdgeInsets.all(10.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: FlatButton(
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.info,
-                                color: Color(0x00ccff).withOpacity(1)),
-                            Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      'Informações',
-                                      style: TextStyle(
-                                          color: Color(0x00ccff).withOpacity(1),
-                                          fontSize: 20.0),
-                                    )
-                                  ],
-                                ))
-                          ],
-                        ),
-                        onPressed: () {
-//                          launch(
-//                              "mailto:${contacts[index].email}?subject=Olá&body=Boa tarde, tudo bem?");
-//                          Navigator.pop(context);
-                        },
-                      ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.all(10.0),
-                      child: FlatButton(
-                        color: Color(0x00ccff).withOpacity(1),
-                        child: Row(
-                          children: <Widget>[
-                            Icon(Icons.delete, color: Colors.white),
-                            Padding(
-                                padding: EdgeInsets.only(left: 10),
-                                child: Column(
-                                  children: <Widget>[
-                                    Text(
-                                      'Remover da line',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 20.0),
-                                    )
-                                  ],
-                                ))
-                          ],
-                        ),
-                        onPressed: () {
-//                          helper.deleteContact(contacts[index].id);
-//                          setState(() {
-//                            contacts.removeAt(index);
-//                            Navigator.pop(context);
-//                          });
-                        },
-                      ),
-                    )
-                  ],
-                ),
-              );
-            },
-          );
-        });
+  _getAllJogadores() async {
+    api.jogadores(widget.token).then((list) {
+      setState(() {
+        isLoading = false;
+        jogador = list;
+      });
+    });
   }
 }

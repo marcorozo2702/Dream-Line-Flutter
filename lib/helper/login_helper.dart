@@ -126,6 +126,7 @@ class Login {
     email = map[emailLoginColumn];
     nome = map[nomeLoginColumn];
     senha = map[senhaLoginColumn];
+    nomeequipe = map[senhaLoginColumn];
     token = map[tokenLoginColumn];
   }
 
