@@ -70,7 +70,9 @@ class _EscalacaoState extends State<Escalacao> {
             Icons.save_alt,
             color: Colors.black,
           ),
-          onPressed: () {},
+          onPressed: () {
+
+          },
         ),
         body: (isLoading || jogador == null)
             ? Center(
@@ -117,7 +119,7 @@ class _EscalacaoState extends State<Escalacao> {
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(
-                  '    Selecione o player 1',
+                  '\n    Selecione o player 1',
                   style: TextStyle(
                       color: Colors.black.withOpacity(0.5),
                       fontWeight: FontWeight.bold,
@@ -147,7 +149,7 @@ class _EscalacaoState extends State<Escalacao> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
-                        '    Selecione o player 1',
+                        '\n    Selecione o player 2',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.5),
                           fontWeight: FontWeight.bold,
@@ -177,7 +179,7 @@ class _EscalacaoState extends State<Escalacao> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
-                        '    Selecione o player 1',
+                        '\n    Selecione o player 3',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.5),
                           fontWeight: FontWeight.bold,
@@ -207,7 +209,7 @@ class _EscalacaoState extends State<Escalacao> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
-                        '    Selecione o player 1',
+                        '\n    Selecione o player 4',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.5),
                           fontWeight: FontWeight.bold,
@@ -237,7 +239,7 @@ class _EscalacaoState extends State<Escalacao> {
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
-                        '    Selecione o player 1',
+                        '\n    Selecione o player 5',
                         style: TextStyle(
                           color: Colors.black.withOpacity(0.5),
                           fontWeight: FontWeight.bold,

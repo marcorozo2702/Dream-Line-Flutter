@@ -55,7 +55,7 @@ class _PrincipalState extends State<Principal> {
                       color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
                       borderRadius: new BorderRadius.circular(10.0)
                   ),
-                  padding: EdgeInsets.all(8),
+                  padding: EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
@@ -104,45 +104,10 @@ class _PrincipalState extends State<Principal> {
                   ),
                 ),
                 SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  decoration: new BoxDecoration(
-                      color: Colors.white, //new Color.fromRGBO(255, 0, 0, 0.0),
-                      borderRadius: new BorderRadius.circular(10.0)
-                  ),
-                  alignment: Alignment.center,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.fromLTRB(10, 0, 10, 10),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "PONTUAÇÃO",
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Saira',
-                            fontSize: 18),
-                      ),
-                      Row(
-                        children: <Widget>[
-                          Expanded(child: Divider(
-                              color: Colors.black)),
-                        ],
-                      ),
-                      Text(
-                        "594.60",
-                        style:
-                            TextStyle(color: Colors.black, fontFamily: 'Saira'),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
                   height: 20,
                 ),
                 Text(
-                  "PARTIDAS",
+                  "PRÓXIMAS PARTIDAS",
                   style: TextStyle(
                       color: Colors.black, fontSize: 25, fontFamily: 'Saira'),
                 ),
@@ -150,9 +115,12 @@ class _PrincipalState extends State<Principal> {
                   height: 10,
                 ),
                 Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: new BorderRadius.circular(10.0)
+                  ),
                   width: MediaQuery.of(context).size.width,
-                  height: 100,
-                  color: Colors.white,
+                  height: 300,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
