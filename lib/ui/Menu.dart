@@ -1,9 +1,11 @@
 import 'package:drreamlineflutter_app/helper/Api.dart';
 import 'package:drreamlineflutter_app/helper/login_helper.dart';
+import 'package:drreamlineflutter_app/ui/MinhaEscalacao.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Escalacao.dart';
 import 'package:drreamlineflutter_app/ui/ListaPlayer.dart';
 
+import 'ListaEquipes.dart';
 import 'Login.dart';
 import 'Principal.dart';
 
@@ -68,7 +70,23 @@ class _MenuState extends State<Menu> {
             title: Text('Sua Escalação', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () async {
               String logado = await helperLog.getLogado();
-              print(logado.toString() + 'aaaaa');
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => MinhaEscalacao(logado),
+                ),
+              );
+            },
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.format_list_bulleted,
+              color: Color(0x00CCFF).withOpacity(1),
+            ),
+            title: Text('Escalar line', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
+            onTap: () async {
+              String logado = await helperLog.getLogado();
 
               Navigator.pushReplacement(
                 context,
@@ -86,7 +104,6 @@ class _MenuState extends State<Menu> {
             ),
             onTap: () async {
               String logado = await helperLog.getLogado();
-              print(logado.toString() + 'aaaaa');
 
               Navigator.pushReplacement(
                 context,
@@ -96,18 +113,24 @@ class _MenuState extends State<Menu> {
               );
             },
           ),
-          ListTile(
-            leading: Icon(
-              Icons.supervisor_account,
-              color: Color(0x00CCFF).withOpacity(1),
-            ),
-            title: Text('Amigos', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
-            onTap: () {
-              //                    Navigator.pushReplacement(context,
-              //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
-              //                    );
-            },
-          ),
+//          ListTile(
+//            leading: Icon(
+//              Icons.supervisor_account,
+//              color: Color(0x00CCFF).withOpacity(1),
+//            ),
+//            title: Text('Equipes', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
+//            onTap: () async {
+//              String logado = await helperLog.getLogado();
+//              print(logado.toString() + 'aaaaa');
+//
+//              Navigator.pushReplacement(
+//                context,
+//                MaterialPageRoute(
+//                  builder: (context) => ListaEquipes(logado),
+//                ),
+//              );
+//            },
+//          ),
           ListTile(
             leading: Icon(
               Icons.question_answer,

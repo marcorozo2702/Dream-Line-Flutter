@@ -17,17 +17,17 @@ class EquipeHelper {
   }
 }
 
-class EquipeU {
+class Equipe {
   dynamic id;
   String nomeequipe;
   dynamic cd_usuario;
 
 
-  EquipeU({this.id, this.nomeequipe, this.cd_usuario});
+  Equipe({this.id, this.nomeequipe, this.cd_usuario});
 
-  factory EquipeU.fromJson(Map<String, dynamic> json) {
-    return EquipeU(
-      id: json['id'],
+  factory Equipe.fromJson(Map<String, dynamic> json) {
+    return Equipe(
+      id: json['id_equipe'],
       nomeequipe: json['nomeequipe'],
       cd_usuario : json ['cd_usuario'],
 
@@ -36,7 +36,7 @@ class EquipeU {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
+    data['id_equipe'] = this.id;
     data['nomeequipe'] = this.nomeequipe;
     data['cd_usuario'] = this.cd_usuario;
     return data;
@@ -45,7 +45,7 @@ class EquipeU {
 
   @override
   String toString() {
-    return "Person(id: $id, nome: $nomeequipe, cd_usuario: $cd_usuario)";
+    return "Equipe(id_equipe: $id, nome: $nomeequipe, cd_usuario: $cd_usuario)";
   }
 }
 

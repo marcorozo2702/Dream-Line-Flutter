@@ -4,8 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'login_helper.dart';
 import 'jogador_helper.dart';
-//const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
-const BASE_URL = "http://10.10.198.225/dreamline/rest/";
+const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
+//const BASE_URL = "http://10.10.198.225/dreamline/rest/";
 
 
 class Api {
@@ -53,16 +53,46 @@ class Api {
     }
   }
 
-  Future<Escalacao> escalar(Escalacao escalacao, int login_id, String token,
-      dynamic cd_jogador, dynamic cd_rodada, dynamic cd_equipe) async {
-    http.Response response = await http.post(BASE_URL + "escalacao",
+  Future<List<Equipe>> equipes(String token) async {
+    http.Response response = await http.get(BASE_URL + 'Equipe',
+        headers: {'token': token, 'Content-Type': 'application/json'});
+//    print(response.body);
+    if (response.statusCode == 200) {
+      List<Equipe> equipes = json.decode(response.body).map<Equipe>((map) {
+        return Equipe.fromJson(map);
+      }).toList();
+      print(equipes);
+      return equipes;
+    } else {
+      return null;
+    }
+  }
+
+  Future<List<Escalacao>> escalacao(String token) async {
+    http.Response response = await http.get(BASE_URL + 'Escalacao',
+        headers: {'token': token, 'Content-Type': 'application/json'});
+//    print(response.body);
+    if (response.statusCode == 200) {
+      List<Escalacao> escalacao = json.decode(response.body).map<Escalacao>((map) {
+        return Escalacao.fromJson(map);
+      }).toList();
+      print(escalacao);
+      return escalacao;
+    } else {
+      return null;
+    }
+  }
+
+  Future<Escalacao> escalar(
+      dynamic _selectPlayer1, dynamic _selectPlayer2,
+      dynamic _selectPlayer3, dynamic _selectPlayer4, dynamic _selectPlayer5, String token) async {
+    print(_selectPlayer1);
+    http.Response response = await http.post(BASE_URL + "Escalacao",
         body: jsonEncode({
-          "cd_jogador": escalacao.cd_jogador,
-          "cd_rodada": escalacao.cd_rodada,
-          "cd_equipe": escalacao.cd_equipe,
-          "cd_usuario": login_id
+          "cd_jogador":  {"0":_selectPlayer1,"1":_selectPlayer2,"2":_selectPlayer3, "3":_selectPlayer4, "4":_selectPlayer5},
         }),
         headers: {'token': token, 'Content-Type': 'application/json'});
+    print(response.body);
     if (response.statusCode == 200) {
       Escalacao dadosJson = new Escalacao.fromJson(json.decode(response.body));
       return dadosJson;

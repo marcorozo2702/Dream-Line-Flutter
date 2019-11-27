@@ -12,7 +12,6 @@ class ListaPlayer extends StatefulWidget {
   String token;
   ListaPlayer(this.token);
 
-
   @override
   _ListaPlayerState createState() => _ListaPlayerState();
 

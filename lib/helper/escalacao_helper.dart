@@ -22,10 +22,13 @@ class Escalacao {
   dynamic cd_equipe;
   dynamic cd_jogador;
   dynamic cd_rodada;
+  dynamic nomeequipe;
+  dynamic nomejogador;
+  dynamic nomerodada;
 
 //  Person();
 
-  Escalacao({ this.id, this.cd_equipe, this.cd_jogador, this.cd_rodada});
+  Escalacao({ this.id, this.cd_equipe, this.cd_jogador, this.cd_rodada, this.nomeequipe, this.nomejogador, this.nomerodada,});
 
   factory Escalacao.fromJson(Map<String, dynamic> json) {
     return Escalacao(
@@ -33,6 +36,9 @@ class Escalacao {
       cd_equipe: json['cd_equipe'],
       cd_jogador: json['cd_jogador'],
       cd_rodada : json ['cd_rodada'],
+      nomeequipe : json ['nomeequipe'],
+      nomejogador : json ['nomejogador'],
+      nomerodada : json ['nomerodada'],
 
     );
   }
@@ -43,12 +49,15 @@ class Escalacao {
     data['cd_equipe'] = this.cd_equipe;
     data['cd_jogador'] = this.cd_jogador;
     data['cd_rodada'] = this.cd_rodada;
+    data['nomeequipe'] = this.nomeequipe;
+    data['nomejogador'] = this.nomejogador;
+    data['nomerodada'] = this.nomerodada;
     return data;
   }
 
   @override
   String toString() {
-    return "Person(id: $id, cd_equipe: $cd_equipe, cd_jogador: $cd_jogador, cd_rodada: $cd_rodada)";
+    return "Escalacao(id: $id, cd_equipe: $cd_equipe, cd_jogador: $cd_jogador, cd_rodada: $cd_rodada, nomeequipe: $nomeequipe, nomejogador: $nomejogador,nomerodada: $nomerodada)";
   }
 }
 

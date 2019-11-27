@@ -1,9 +1,13 @@
 import 'package:drreamlineflutter_app/helper/Api.dart';
+import 'package:drreamlineflutter_app/helper/escalacao_helper.dart';
 import 'package:drreamlineflutter_app/helper/jogador_helper.dart';
 import 'package:drreamlineflutter_app/helper/login_helper.dart';
+import 'package:drreamlineflutter_app/ui/Principal.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
+
+import 'ListaPlayer.dart';
 
 class Escalacao extends StatefulWidget {
 
@@ -25,11 +29,11 @@ class _EscalacaoState extends State<Escalacao> {
 
 
   //DROPD
-  String _selectedPlayer1;
-  String _selectedPlayer2;
-  String _selectedPlayer3;
-  String _selectedPlayer4;
-  String _selectedPlayer5;
+  dynamic _selectedPlayer1;
+  dynamic _selectedPlayer2;
+  dynamic _selectedPlayer3;
+  dynamic _selectedPlayer4;
+  dynamic _selectedPlayer5;
 
 
 
@@ -70,9 +74,26 @@ class _EscalacaoState extends State<Escalacao> {
             Icons.save_alt,
             color: Colors.black,
           ),
-          onPressed: () {
+          onPressed: () async{
+//                enviar escalação
+                if (api.escalar(
+                _selectedPlayer1.toString(), _selectedPlayer2.toString(),
+                _selectedPlayer3.toString(), _selectedPlayer4.toString(),
+                _selectedPlayer5.toString(), widget.token
+                ) != null){
+                  String logado = await helperLog.getLogado();
+                  print(logado.toString() + 'aaaaa');
 
-          },
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ListaPlayer(logado),
+                    ),
+                  );
+                } else {
+                  print('Usuário não cadastrado');
+                }
+          }
         ),
         body: (isLoading || jogador == null)
             ? Center(
@@ -135,6 +156,7 @@ class _EscalacaoState extends State<Escalacao> {
                 onChanged: (value) {
                   setState(() {
                     _selectedPlayer1 = value;
+                    print(_selectedPlayer1.toString() + ' p1');
                   });
                 },
                 value: _selectedPlayer1,
@@ -165,6 +187,7 @@ class _EscalacaoState extends State<Escalacao> {
                       onChanged: (value) {
                         setState(() {
                           _selectedPlayer2 = value;
+                          print(_selectedPlayer2.toString() + ' p2');
                         });
                       },
                       value: _selectedPlayer2,
@@ -195,6 +218,8 @@ class _EscalacaoState extends State<Escalacao> {
                       onChanged: (value) {
                         setState(() {
                           _selectedPlayer3 = value;
+                          print(_selectedPlayer3.toString() + ' p3');
+
                         });
                       },
                       value: _selectedPlayer3,
@@ -225,6 +250,8 @@ class _EscalacaoState extends State<Escalacao> {
                       onChanged: (value) {
                         setState(() {
                           _selectedPlayer4 = value;
+                          print(_selectedPlayer4.toString() + ' p4');
+
                         });
                       },
                       value: _selectedPlayer4,
@@ -255,6 +282,7 @@ class _EscalacaoState extends State<Escalacao> {
                       onChanged: (value) {
                         setState(() {
                           _selectedPlayer5 = value;
+                          print(_selectedPlayer5.toString() + ' p5');
                         });
                       },
                       value: _selectedPlayer5,
