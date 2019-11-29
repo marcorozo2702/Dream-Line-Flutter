@@ -83,7 +83,6 @@ class _EscalacaoState extends State<Escalacao> {
                 ) != null){
                   String logado = await helperLog.getLogado();
                   print(logado.toString() + 'aaaaa');
-
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
@@ -300,5 +299,15 @@ class _EscalacaoState extends State<Escalacao> {
         jogador = list;
       });
     });
+  }
+
+
+  void _exibirDialogo() {
+    showDialog(
+      context:  context,
+      builder:  (BuildContext context) {
+        return AlertDialog();
+      },
+    );
   }
 }

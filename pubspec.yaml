@@ -26,6 +26,7 @@ dependencies:
   url_launcher: ^5.2.5
   sqflite: any
   http: any
+  font_awesome_flutter: ^8.5.0
 
 dev_dependencies:
   flutter_test:

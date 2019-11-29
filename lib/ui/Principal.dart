@@ -54,31 +54,36 @@ class _PrincipalState extends State<Principal> {
           SliverFillRemaining(
             child: Container(
               color: Color(0xcccccc).withOpacity(0.5),
-              padding: EdgeInsets.all(10),
+//              padding: EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   Container(
+                    width: MediaQuery.of(context).size.width,
                     decoration: new BoxDecoration(
-                        color: Colors.white,
-                        //new Color.fromRGBO(255, 0, 0, 0.0),
-                        borderRadius: new BorderRadius.circular(10.0)),
+                      color: Colors.white,
+                      //new Color.fromRGBO(255, 0, 0, 0.0),
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50.0),
+                            bottomRight: Radius.circular(50.0)
+                        )
+                    ),
                     padding: EdgeInsets.all(20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Container(
-                            padding: EdgeInsets.all(50),
-                            width: 100,
-                            height: 100,
-                            decoration: new BoxDecoration(
-                                border:
-                                    Border.all(width: 2, color: Colors.black),
-                                shape: BoxShape.circle,
-                                image: new DecorationImage(
-                                    fit: BoxFit.cover,
-                                    image:
-                                        new AssetImage("images/ic_logo.png")))),
+                          padding: EdgeInsets.all(50),
+                          width: 100,
+                          height: 100,
+                          decoration: new BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: new DecorationImage(
+                              fit: BoxFit.cover,
+                              image: new AssetImage("images/ic_logo.png"),
+                            ),
+                          ),
+                        ),
                         SizedBox(
                           width: 10,
                         ),
@@ -113,17 +118,14 @@ class _PrincipalState extends State<Principal> {
                     ),
                   ),
                   SizedBox(
-                    height: 20,
+                    height: 10,
                   ),
                   Text(
-                    "PRÓXIMAS PARTIDAS",
+                    "SUA ESCALAÇÃO",
                     style: TextStyle(
                         color: Colors.black, fontSize: 25, fontFamily: 'Saira'),
                   ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Container(
+                  Expanded(
                     child: (isLoading || escalacao == null)
                         ? Center(
                             child: CircularProgressIndicator(),
@@ -146,37 +148,54 @@ class _PrincipalState extends State<Principal> {
   }
 
   Widget _jogadorEscalacaoCard(BuildContext context, int index) {
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: 48.0,
-              height: 48.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image:
+    return Padding(
+      padding: EdgeInsets.only(bottom: 10),
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(40.0), color: Colors.white),
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              Container(
+                width: 48.0,
+                height: 48.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image:
 //                          players[index].img != null? FileImage(File(contacts[index].img)) :
-                        AssetImage('images/user.png')),
-              ),
-            ),
-            SizedBox(
-              width: 20,
-            ),
-            Column(
-              children: <Widget>[
-                Text("Player name"),
-                Text(
-                  escalacao[index].nomejogador,
-                  style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+                          AssetImage('images/user.png')),
                 ),
-              ],
-            ),
-          ],
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    escalacao[index].nomejogador,
+                    style:
+                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.w300, fontFamily: 'Saira'),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    escalacao[index].pontos,
+                    style:
+                    TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300, color: Color(0x00CCFF).withOpacity(1)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

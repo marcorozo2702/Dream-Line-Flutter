@@ -1,7 +1,9 @@
 import 'package:drreamlineflutter_app/helper/equipe_helper.dart';
 import 'package:drreamlineflutter_app/helper/escalacao_helper.dart';
+import 'package:drreamlineflutter_app/helper/partida_helper.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'pontos_jogador_helper.dart';
 import 'login_helper.dart';
 import 'jogador_helper.dart';
 const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
@@ -11,6 +13,7 @@ const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
 class Api {
   String token;
 
+///////////// USUARIO
   Future<Logado> login(String email, String senha) async {
     http.Response response = await http.post(BASE_URL + "login",
         body: jsonEncode({"senha": senha, "email": email}),
@@ -37,8 +40,9 @@ class Api {
       return null;
     }
   }
+  //----------------
 
-
+//------------------JOGADORES (PLAYERS)
   Future<List<Jogador>> jogadores(String token) async {
     http.Response response = await http.get(BASE_URL + 'Jogador',
         headers: {'token': token, 'Content-Type': 'application/json'});
@@ -52,7 +56,9 @@ class Api {
       return null;
     }
   }
+  //-----------------
 
+  //----------- EQUIPES
   Future<List<Equipe>> equipes(String token) async {
     http.Response response = await http.get(BASE_URL + 'Equipe',
         headers: {'token': token, 'Content-Type': 'application/json'});
@@ -67,9 +73,12 @@ class Api {
       return null;
     }
   }
+  //-----------
 
+
+//----------------------ESCALAÇÃO
   Future<List<Escalacao>> escalacao(String token) async {
-    http.Response response = await http.get(BASE_URL + 'Escalacao',
+     http.Response response = await http.get(BASE_URL + 'pontuacao/getEscalacaoPontos',
         headers: {'token': token, 'Content-Type': 'application/json'});
 //    print(response.body);
     if (response.statusCode == 200) {
@@ -100,5 +109,40 @@ class Api {
       return null;
     }
   }
+  //-----------------
+
+
+  Future<List<Partida>> partida(String token) async {
+    http.Response response = await http.get(BASE_URL + 'Partida',
+        headers: {'token': token, 'Content-Type': 'application/json'});
+    print(response.body);
+    if (response.statusCode == 200) {
+      List<Partida> partida = json.decode(response.body).map<Partida>((map) {
+        return Partida.fromJson(map);
+      }).toList();
+      print(partida);
+      return partida;
+    } else {
+      return null;
+    }
+  }
+
+
+  //-----------------Pontuacao
+  Future<List<PontosJogador>> pontuacaojogador(String token) async {
+    http.Response response = await http.get(BASE_URL + 'Pontuacao/',
+        headers: {'token': token, 'Content-Type': 'application/json'});
+    print(response.body);
+    if (response.statusCode == 200) {
+      List<PontosJogador> pontosjogador = json.decode(response.body).map<PontosJogador>((map) {
+        return PontosJogador.fromJson(map);
+      }).toList();
+      print(pontosjogador);
+      return pontosjogador;
+    } else {
+      return null;
+    }
+  }
+
 
 }
