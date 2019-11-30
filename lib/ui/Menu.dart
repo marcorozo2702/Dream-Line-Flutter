@@ -5,6 +5,7 @@ import 'package:drreamlineflutter_app/ui/Partidas.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Escalacao.dart';
 import 'package:drreamlineflutter_app/ui/ListaPlayer.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'ListaEquipes.dart';
@@ -23,8 +24,7 @@ class _MenuState extends State<Menu> {
 
 
 
-
-  int admin = 0;
+    int admin = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -190,4 +190,7 @@ class _MenuState extends State<Menu> {
       ),
     );
   }
+
+
+
 }

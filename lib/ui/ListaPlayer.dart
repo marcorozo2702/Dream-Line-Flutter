@@ -3,6 +3,7 @@ import 'package:drreamlineflutter_app/helper/jogador_helper.dart';
 import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 
 
@@ -34,6 +35,8 @@ class _ListaPlayerState extends State<ListaPlayer> {
   @override
   void initState() {
     super.initState();
+
+
     isLoading = true;
     print(widget.token);
     _getAllJogadores();

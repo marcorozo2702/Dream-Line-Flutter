@@ -4,6 +4,8 @@ import 'package:drreamlineflutter_app/helper/login_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:drreamlineflutter_app/ui/Menu.dart';
 
+import 'package:drreamlineflutter_app/OneSignal/home_bloc.dart';
+
 class Principal extends StatefulWidget {
   String token;
   String nome;
@@ -17,6 +19,9 @@ class Principal extends StatefulWidget {
 }
 
 class _PrincipalState extends State<Principal> {
+  var bloc = BlocHome();
+
+
   LoginHelper helperLog = LoginHelper();
   EscalacaoHelper helper = EscalacaoHelper();
   List<Escalacao> escalacao = List();
@@ -26,6 +31,7 @@ class _PrincipalState extends State<Principal> {
 
   @override
   void initState() {
+    bloc.initOneSignal();
     super.initState();
     isLoading = true;
     print(widget.token);

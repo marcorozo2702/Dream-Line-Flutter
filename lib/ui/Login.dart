@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:drreamlineflutter_app/ui/Cadastro.dart';
 import 'package:drreamlineflutter_app/ui/Principal.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LoginScreen extends StatefulWidget {
 
@@ -130,6 +131,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (user != null) {
                               helper.saveLogado(user.id, user.token, user.nome, user.email, user.nomeequipe);
                               print(user.nomeequipe);
+
                               Navigator.pop(context);
                               await Navigator.pushReplacement(
                                   context,
@@ -171,4 +173,5 @@ class _LoginScreenState extends State<LoginScreen> {
           }),
     );
   }
+
 }
