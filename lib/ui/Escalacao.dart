@@ -105,6 +105,7 @@ class _EscalacaoState extends State<Escalacao> {
             color: Colors.white,
             child: ListView(
               children: <Widget>[
+                SizedBox(height: 20,),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,

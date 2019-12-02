@@ -80,7 +80,7 @@ class _MenuState extends State<Menu> {
               FontAwesomeIcons.gamepad,
               color: Color(0x961b03).withOpacity(1),
             ),
-            title: Text('Próximas partidas', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
+            title: Text('Partidas', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () async {
               String logado = await helperLog.getLogado();
 
