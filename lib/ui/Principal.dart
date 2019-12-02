@@ -45,7 +45,7 @@ class _PrincipalState extends State<Principal> {
         slivers: <Widget>[
           SliverAppBar(
             backgroundColor: Color(0x961b03).withOpacity(1),
-            expandedHeight: 120.0,
+            expandedHeight: 50.0,
             floating: false,
             pinned: true,
             title: Text("Dream Line",

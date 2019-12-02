@@ -60,7 +60,7 @@ class _EscalacaoState extends State<Escalacao> {
         bottomNavigationBar: BottomAppBar(
           child: Container(
             height: 30,
-            color: Colors.black,
+            color: Color(0x961b03).withOpacity(1),
           ),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -101,7 +101,7 @@ class _EscalacaoState extends State<Escalacao> {
           ),
         )
             :  Container(
-            padding: EdgeInsets.all(20),
+            padding: EdgeInsets.only(right: 20, left: 20),
             color: Colors.white,
             child: ListView(
               children: <Widget>[
@@ -126,10 +126,10 @@ class _EscalacaoState extends State<Escalacao> {
                   height: 20,
                 ),
           Container(
-            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+            margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10),
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20.0),
-                border: Border.all(color: Colors.blueGrey)),
+                border: Border.all(color: Colors.black)),
             child: DropdownButtonHideUnderline(
               child: DropdownButton(
                 hint: Text(
@@ -157,10 +157,10 @@ class _EscalacaoState extends State<Escalacao> {
             ),
           ),
                 Container(
-                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.blueGrey)),
+                      border: Border.all(color: Colors.black)),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
@@ -188,10 +188,10 @@ class _EscalacaoState extends State<Escalacao> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.blueGrey)),
+                      border: Border.all(color: Colors.black)),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
@@ -220,10 +220,10 @@ class _EscalacaoState extends State<Escalacao> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.blueGrey)),
+                      border: Border.all(color: Colors.black)),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
@@ -252,10 +252,10 @@ class _EscalacaoState extends State<Escalacao> {
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 20),
+                  margin: EdgeInsets.only(left: 40.0, right: 40.0, top: 10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20.0),
-                      border: Border.all(color: Colors.blueGrey)),
+                      border: Border.all(color: Colors.black)),
                   child: DropdownButtonHideUnderline(
                     child: DropdownButton(
                       hint: Text(
@@ -282,6 +282,9 @@ class _EscalacaoState extends State<Escalacao> {
                     ),
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                )
               ],
             )));
   }

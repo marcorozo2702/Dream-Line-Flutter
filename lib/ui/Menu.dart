@@ -58,7 +58,7 @@ class _MenuState extends State<Menu> {
             title: Text('Home', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             leading: Icon(
               Icons.home,
-              color: Color(0xf2f98).withOpacity(1),
+              color: Color(0x961b03).withOpacity(1),
             ),
             onTap: () async {
               LoginHelper helper = LoginHelper();
@@ -78,7 +78,7 @@ class _MenuState extends State<Menu> {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.gamepad,
-              color: Color(0xf2f98).withOpacity(1),
+              color: Color(0x961b03).withOpacity(1),
             ),
             title: Text('Próximas partidas', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () async {
@@ -95,7 +95,7 @@ class _MenuState extends State<Menu> {
           ListTile(
             leading: Icon(
               FontAwesomeIcons.trophy,
-              color: Color(0xf2f98).withOpacity(1),
+              color: Color(0x961b03).withOpacity(1),
             ),
             title: Text('Pontuações dos jogadores', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () async {
@@ -112,7 +112,7 @@ class _MenuState extends State<Menu> {
           ListTile(
             leading: Icon(
               Icons.dashboard,
-              color: Color(0xf2f98).withOpacity(1),
+              color: Color(0x961b03).withOpacity(1),
             ),
             title: Text('Escalar line', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             onTap: () async {
@@ -130,7 +130,7 @@ class _MenuState extends State<Menu> {
             title: Text('Informações sobre players', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
             leading: Icon(
               Icons.dehaze,
-              color: Color(0xf2f98).withOpacity(1),
+              color: Color(0x961b03).withOpacity(1),
             ),
             onTap: () async {
               String logado = await helperLog.getLogado();
@@ -176,7 +176,7 @@ class _MenuState extends State<Menu> {
           ListTile(
             leading: Icon(
               Icons.power_settings_new,
-              color: Colors.red,
+              color: Colors.black,
             ),
             title: Text('Sair', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200),),
             onTap: () async{

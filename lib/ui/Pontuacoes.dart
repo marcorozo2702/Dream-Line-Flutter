@@ -35,108 +35,121 @@ class _PontuacaoJogadoresState extends State<PontuacaoJogadores> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Menu(),
-        appBar: AppBar(
-          title: Text('Parcias dos jogadores'),
-          backgroundColor: Color(0x961b03).withOpacity(1),
-          centerTitle: true,
-          actions: <Widget>[
-            PopupMenuButton<OrderOptions>(
-                itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
-                      const PopupMenuItem<OrderOptions>(
-                        child: Text('Menos Pontos'),
-                        value: OrderOptions.orderaz,
-                      ),
-                      const PopupMenuItem<OrderOptions>(
-                        child: Text('Mais Pontos'),
-                        value: OrderOptions.orderza,
-                      ),
-                    ],
-                onSelected: _orderList)
-          ],
+      drawer: Menu(),
+      appBar: AppBar(
+        title: Text('Parcias dos jogadores'),
+        backgroundColor: Color(0x961b03).withOpacity(1),
+        centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<OrderOptions>(
+              itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+                    const PopupMenuItem<OrderOptions>(
+                      child: Text('Menos Pontos'),
+                      value: OrderOptions.orderaz,
+                    ),
+                    const PopupMenuItem<OrderOptions>(
+                      child: Text('Mais Pontos'),
+                      value: OrderOptions.orderza,
+                    ),
+                  ],
+              onSelected: _orderList)
+        ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/bg2.jpg'), fit: BoxFit.cover
+          ),
         ),
-        body: WillPopScope(
-            child: (isLoading || pontosjogador == null)
-                ? Center(
-                    child: CircularProgressIndicator(),
-                  )
-                : ListView.builder(
-                    padding: EdgeInsets.all(10.0),
-                    itemCount: pontosjogador.length,
-                    itemBuilder: (context, index) {
-                      return _jogadorCard(context, index);
-                    }),
-            onWillPop: () {
-              return null;
-            }));
+        child: WillPopScope(
+          child: (isLoading || pontosjogador == null)
+              ? Center(
+            child: CircularProgressIndicator(),
+          )
+              : ListView.builder(
+              padding: EdgeInsets.all(10.0),
+              itemCount: pontosjogador.length,
+              itemBuilder: (context, index) {
+                return _jogadorCard(context, index);
+              }),
+          onWillPop: () {
+            return null;
+          },
+        ),
+      )
+    );
   }
 
   Widget _jogadorCard(BuildContext context, int index) {
     return GestureDetector(
-      child: Column(
-        children: <Widget>[
-          Padding(
-            padding: EdgeInsets.all(10.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                Container(
-                  width: 48.0,
-                  height: 48.0,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                        image:
-//                          players[index].img != null? FileImage(File(contacts[index].img)) :
-                        AssetImage('images/user.png')),
-                  ),
-                ),
-                SizedBox(
-                  width: 20,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text(
-                      pontosjogador[index].nome_jogador,
-                      style:
-                      TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 30,
-                ),
-                Column(
-                  children: <Widget>[
-                    Text("Pontos"),
-                    Text(
-                      pontosjogador[index].pontos,
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 10,
-                ),
-              ],
-            ),
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Expanded(
-                child: Divider(color: Colors.black, height: 0,),
-              )
+              Container(
+                width: 48.0,
+                height: 48.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image:
+//                          players[index].img != null? FileImage(File(contacts[index].img)) :
+                          AssetImage('images/user.png')),
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    pontosjogador[index].nome_jogador,
+                    style:
+                        TextStyle(fontSize: 20.0, color: Colors.white,fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 30,
+              ),
+              Column(
+                children: <Widget>[
+                  Text("Pontos", style: TextStyle(
+                      color: Colors.white
+                  ),),
+                  Text(
+                    pontosjogador[index].pontos,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 10,
+              ),
             ],
-          )
-        ],
-      )
-
-    );
+          ),
+        ),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Divider(
+                color: Colors.white,
+                height: 0,
+              ),
+            )
+          ],
+        )
+      ],
+    ));
   }
 
   void _orderList(OrderOptions result) async {

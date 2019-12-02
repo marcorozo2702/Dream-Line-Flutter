@@ -37,41 +37,52 @@ class _PartidasState extends State<Partidas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: Menu(),
-        appBar: AppBar(
-          title: Text('Partidas', style: TextStyle(color: Colors.white),),
-          backgroundColor: Color(0x961b03).withOpacity(1),
-          centerTitle: true,
-          actions: <Widget>[
-            PopupMenuButton<OrderOptions>(
-                itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
-                  const PopupMenuItem<OrderOptions>(
-                    child: Text('Data - '),
-                    value: OrderOptions.orderaz,
-                  ),
-                  const PopupMenuItem<OrderOptions>(
-                    child: Text('Data + '),
-                    value: OrderOptions.orderza,
-                  ),
-                ],
-                onSelected: _orderList)
-          ],
+      drawer: Menu(),
+      appBar: AppBar(
+        title: Text(
+          'Partidas',
+          style: TextStyle(color: Colors.white),
         ),
-        body: WillPopScope(
-            child: (isLoading || partida == null)
-                ? Center(
-              child: CircularProgressIndicator(
-              ),
-            )
-                : ListView.builder(
-                padding: EdgeInsets.all(10.0),
-                itemCount: partida.length,
-                itemBuilder: (context, index) {
-                  return _jogadorEscalacaoCard(context, index);
-                }),
-            onWillPop: () {
-              return null;
-            }));
+        backgroundColor: Color(0x961b03).withOpacity(1),
+        centerTitle: true,
+        actions: <Widget>[
+          PopupMenuButton<OrderOptions>(
+              itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+                    const PopupMenuItem<OrderOptions>(
+                      child: Text('Data - '),
+                      value: OrderOptions.orderaz,
+                    ),
+                    const PopupMenuItem<OrderOptions>(
+                      child: Text('Data + '),
+                      value: OrderOptions.orderza,
+                    ),
+                  ],
+              onSelected: _orderList)
+        ],
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('images/bg2.jpg'), fit: BoxFit.cover
+          ),
+        ),
+        child: WillPopScope(
+          child: (isLoading || partida == null)
+              ? Center(
+            child: CircularProgressIndicator(),
+          )
+              : ListView.builder(
+              padding: EdgeInsets.all(10.0),
+              itemCount: partida.length,
+              itemBuilder: (context, index) {
+                return _jogadorEscalacaoCard(context, index);
+              }),
+          onWillPop: () {
+            return null;
+          },
+        ),
+      ),
+    );
   }
 
   Widget _jogadorEscalacaoCard(BuildContext context, int index) {
@@ -84,12 +95,13 @@ class _PartidasState extends State<Partidas> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text("Data: ",
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+            Text(
+              "Data: ",
+              style: TextStyle(fontSize: 18.0,color: Colors.white, fontWeight: FontWeight.w300),
             ),
             Text(
               partida[index].data,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300),
+              style: TextStyle(fontSize: 18.0,color: Colors.white, fontWeight: FontWeight.w300),
             ),
           ],
         ),
@@ -102,22 +114,21 @@ class _PartidasState extends State<Partidas> {
           children: <Widget>[
             Text(
               partida[index].nome_time1,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18.0,color: Colors.white,  fontWeight: FontWeight.bold),
             ),
             Text(
               "        X       ",
-              style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.w100),
+              style: TextStyle(fontSize: 25.0,color: Colors.white, fontWeight: FontWeight.w100),
             ),
             Text(
               partida[index].nome_time2,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18.0,color: Colors.white, fontWeight: FontWeight.bold),
             ),
           ],
         ),
         Row(
           children: <Widget>[
-            Expanded(child: Divider(
-                color: Colors.black)),
+            Expanded(child: Divider(color: Colors.white)),
           ],
         ),
       ],
