@@ -54,7 +54,7 @@ class _EscalacaoState extends State<Escalacao> {
         drawer: Menu(),
         appBar: AppBar(
           title: Text('Minha line'),
-          backgroundColor: Colors.black,
+          backgroundColor: Color(0x961b03).withOpacity(1),
           centerTitle: true,
         ),
         bottomNavigationBar: BottomAppBar(
@@ -81,14 +81,8 @@ class _EscalacaoState extends State<Escalacao> {
                 _selectedPlayer3.toString(), _selectedPlayer4.toString(),
                 _selectedPlayer5.toString(), widget.token
                 ) != null){
-                  String logado = await helperLog.getLogado();
-                  print(logado.toString() + 'aaaaa');
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ListaPlayer(logado),
-                    ),
-                  );
+
+
                 } else {
                   print('Usuário não cadastrado');
                 }

@@ -51,7 +51,7 @@ class _ListaPlayerState extends State<ListaPlayer> {
         drawer: Menu(),
         appBar: AppBar(
           title: Text('Jogadores'),
-          backgroundColor: Colors.black,
+          backgroundColor: Color(0x961b03).withOpacity(1),
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(
@@ -108,20 +108,21 @@ class _ListaPlayerState extends State<ListaPlayer> {
                   ),
                 ),
                 SizedBox(
-                  width: 20,
+                  width: 15,
                 ),
                 Column(
                   children: <Widget>[
                     Text("Player name"),
                     Text(
                       jogador[index].nome,
+                      overflow: TextOverflow.ellipsis,
                       style: TextStyle(
                           fontSize: 18.0, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),
                 SizedBox(
-                  width: 30,
+                  width: 20,
                 ),
                 Column(
                   children: <Widget>[
@@ -129,7 +130,7 @@ class _ListaPlayerState extends State<ListaPlayer> {
                     Text(
                       jogador[index].nome_time,
                       style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                          fontSize: 16.0, fontWeight: FontWeight.bold),
                     ),
                   ],
                 ),

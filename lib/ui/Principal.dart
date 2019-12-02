@@ -21,7 +21,6 @@ class Principal extends StatefulWidget {
 class _PrincipalState extends State<Principal> {
   var bloc = BlocHome();
 
-
   LoginHelper helperLog = LoginHelper();
   EscalacaoHelper helper = EscalacaoHelper();
   List<Escalacao> escalacao = List();
@@ -45,21 +44,23 @@ class _PrincipalState extends State<Principal> {
       body: CustomScrollView(
         slivers: <Widget>[
           SliverAppBar(
-            backgroundColor: Colors.black,
-            expandedHeight: 150.0,
+            backgroundColor: Color(0x961b03).withOpacity(1),
+            expandedHeight: 120.0,
             floating: false,
             pinned: true,
-            flexibleSpace: FlexibleSpaceBar(
-              title: Text("Dream Line"),
-              background: Image.asset(
-                'images/backgroundAppBar.jpg',
-                fit: BoxFit.cover,
-              ),
+            title: Text("Dream Line",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontSize: 30, color: Colors.white, fontFamily: 'Saira', ),
             ),
           ),
           SliverFillRemaining(
             child: Container(
-              color: Color(0xcccccc).withOpacity(0.5),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('images/bg2.jpg'),fit: BoxFit.cover
+                )
+              ),
 //              padding: EdgeInsets.all(10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -67,13 +68,11 @@ class _PrincipalState extends State<Principal> {
                   Container(
                     width: MediaQuery.of(context).size.width,
                     decoration: new BoxDecoration(
-                      color: Colors.white,
-                      //new Color.fromRGBO(255, 0, 0, 0.0),
+                        color: Colors.white.withOpacity(0.2),
+                        //new Color.fromRGBO(255, 0, 0, 0.0),
                         borderRadius: BorderRadius.only(
                             bottomLeft: Radius.circular(50.0),
-                            bottomRight: Radius.circular(50.0)
-                        )
-                    ),
+                            bottomRight: Radius.circular(50.0))),
                     padding: EdgeInsets.all(20),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +101,7 @@ class _PrincipalState extends State<Principal> {
                                   widget.nomeequipe,
                                   style: TextStyle(
                                       fontSize: 22,
-                                      color: Colors.black,
+                                      color: Colors.white,
                                       fontFamily: 'Saira'),
                                 ),
                               ],
@@ -112,8 +111,8 @@ class _PrincipalState extends State<Principal> {
                                 Text(
                                   widget.nome,
                                   style: TextStyle(
-                                      fontSize: 20,
-                                      color: Colors.black,
+                                      fontSize: 22,
+                                      color: Colors.white,
                                       fontFamily: 'Saira'),
                                 ),
                               ],
@@ -129,7 +128,7 @@ class _PrincipalState extends State<Principal> {
                   Text(
                     "SUA ESCALAÇÃO",
                     style: TextStyle(
-                        color: Colors.black, fontSize: 25, fontFamily: 'Saira'),
+                        color: Colors.white, fontSize: 25, fontFamily: 'Saira'),
                   ),
                   Expanded(
                     child: (isLoading || escalacao == null)
@@ -158,51 +157,64 @@ class _PrincipalState extends State<Principal> {
       padding: EdgeInsets.only(bottom: 10),
       child: Container(
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(40.0), color: Colors.white),
-        child: Padding(
-          padding: EdgeInsets.all(10.0),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Container(
-                width: 48.0,
-                height: 48.0,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  image: DecorationImage(
-                      image:
+            borderRadius: BorderRadius.circular(40.0), color: Colors.transparent),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Container(
+                  width: 48.0,
+                  height: 48.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                        image:
 //                          players[index].img != null? FileImage(File(contacts[index].img)) :
-                          AssetImage('images/user.png')),
+                        AssetImage('images/user.png')),
+                  ),
                 ),
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Column(
-                children: <Widget>[
-                  Text(
-                    escalacao[index].nomejogador,
-                    style:
-                        TextStyle(fontSize: 22.0, fontWeight: FontWeight.w300, fontFamily: 'Saira'),
-                  ),
-                ],
-              ),
-              SizedBox(
-                width: 20,
-              ),
-              Column(
-                children: <Widget>[
-                  Text(
-                    escalacao[index].pontos,
-                    style:
-                    TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300, color: Color(0x00CCFF).withOpacity(1)),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      escalacao[index].nomejogador,
+                      style: TextStyle(
+                        color: Colors.white,
+                          fontSize: 22.0,
+                          fontWeight: FontWeight.w300,
+                          fontFamily: 'Saira'),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  width: 20,
+                ),
+                Column(
+                  children: <Widget>[
+                    Text(
+                      escalacao[index].pontos,
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.white,
+                      )
+                    ),
+                  ],
+                ),
+              ],
+            ),
+            Row(
+              children: <Widget>[
+                Expanded(child: Divider(color: Colors.white,))
+              ],
+            )
+          ],
+        )
       ),
     );
   }

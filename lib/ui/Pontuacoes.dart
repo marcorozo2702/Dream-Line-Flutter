@@ -37,8 +37,8 @@ class _PontuacaoJogadoresState extends State<PontuacaoJogadores> {
     return Scaffold(
         drawer: Menu(),
         appBar: AppBar(
-          title: Text('Jogadores'),
-          backgroundColor: Colors.black,
+          title: Text('Parcias dos jogadores'),
+          backgroundColor: Color(0x961b03).withOpacity(1),
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(

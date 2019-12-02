@@ -8,6 +8,7 @@ import 'login_helper.dart';
 import 'jogador_helper.dart';
 const BASE_URL = "https://marcorozo99.000webhostapp.com/rest/";
 //const BASE_URL = "http://10.10.198.225/dreamline/rest/";
+//const BASE_URL = "http://192.168.1.9/dreamline/rest/";
 
 
 class Api {

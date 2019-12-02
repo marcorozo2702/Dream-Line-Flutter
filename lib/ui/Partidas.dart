@@ -39,8 +39,8 @@ class _PartidasState extends State<Partidas> {
     return Scaffold(
         drawer: Menu(),
         appBar: AppBar(
-          title: Text('Partidas'),
-          backgroundColor: Colors.black,
+          title: Text('Partidas', style: TextStyle(color: Colors.white),),
+          backgroundColor: Color(0x961b03).withOpacity(1),
           centerTitle: true,
           actions: <Widget>[
             PopupMenuButton<OrderOptions>(

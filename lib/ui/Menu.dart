@@ -39,7 +39,7 @@ class _MenuState extends State<Menu> {
             ),
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage('images/backgroundAppBar.jpg'),fit: BoxFit.cover
+                image: AssetImage('images/bg.jpg'),fit: BoxFit.cover
               )
 //              gradient: LinearGradient(
 //                  colors: [Color(0x1ca7ec).withOpacity(1),Color(0xf2f98).withOpacity(1)],
@@ -161,18 +161,18 @@ class _MenuState extends State<Menu> {
 //              );
 //            },
 //          ),
-          ListTile(
-            leading: Icon(
-              Icons.question_answer,
-              color: Color(0xf2f98).withOpacity(1),
-            ),
-            title: Text('Suporte', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
-            onTap: () {
-              //                    Navigator.pushReplacement(context,
-              //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
-              //                    );
-            },
-          ),
+//          ListTile(
+//            leading: Icon(
+//              Icons.question_answer,
+//              color: Color(0xf2f98).withOpacity(1),
+//            ),
+//            title: Text('Suporte', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w200)),
+//            onTap: () {
+//              //                    Navigator.pushReplacement(context,
+//              //                        MaterialPageRoute(builder: (context) => TabBarMenu(),),
+//              //                    );
+//            },
+//          ),
           ListTile(
             leading: Icon(
               Icons.power_settings_new,
