@@ -36,111 +36,123 @@ class _ListaPlayerState extends State<ListaPlayer> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Menu(),
-      appBar: AppBar(
-        title: Text('Jogadores'),
-        backgroundColor: Color(0x961b03).withOpacity(1),
-        centerTitle: true,
-        actions: <Widget>[
-          PopupMenuButton<OrderOptions>(
-              itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
-                    const PopupMenuItem<OrderOptions>(
-                      child: Text('Ordenar de A-Z'),
-                      value: OrderOptions.orderaz,
-                    ),
-                    const PopupMenuItem<OrderOptions>(
-                      child: Text('Ordenar de Z-A'),
-                      value: OrderOptions.orderza,
-                    ),
-                  ],
-              onSelected: _orderList)
-        ],
-      ),
-      body: Container(
-        decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage('images/bg2.jpg'), fit: BoxFit.cover
-          )
+        drawer: Menu(),
+        appBar: AppBar(
+          title: Text('Jogadores'),
+          backgroundColor: Color(0x961b03).withOpacity(1),
+          centerTitle: true,
+          actions: <Widget>[
+            PopupMenuButton<OrderOptions>(
+                itemBuilder: (context) => <PopupMenuEntry<OrderOptions>>[
+                      const PopupMenuItem<OrderOptions>(
+                        child: Text('Ordenar de A-Z'),
+                        value: OrderOptions.orderaz,
+                      ),
+                      const PopupMenuItem<OrderOptions>(
+                        child: Text('Ordenar de Z-A'),
+                        value: OrderOptions.orderza,
+                      ),
+                    ],
+                onSelected: _orderList)
+          ],
         ),
-        child: WillPopScope(
-          child: (isLoading || jogador == null)
-              ? Center(
-            child: CircularProgressIndicator(),
-          )
-              : ListView.builder(
-              itemCount: jogador.length,
-              itemBuilder: (context, index) {
-                return _jogadorCard(context, index);
-              }),
-          onWillPop: () {
-            return null;
-          },
-        ),
-      )
-    );
+        body: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('images/bg2.jpg'), fit: BoxFit.cover)),
+          child: WillPopScope(
+            child: (isLoading || jogador == null)
+                ? Center(
+                    child: CircularProgressIndicator(),
+                  )
+                : ListView.builder(
+              padding: EdgeInsets.only(bottom: 15, top: 10),
+                    itemCount: jogador.length,
+                    itemBuilder: (context, index) {
+                      return _jogadorCard(context, index);
+                    },
+                  ),
+            onWillPop: () {
+              return null;
+            },
+          ),
+        ));
   }
 
   Widget _jogadorCard(BuildContext context, int index) {
     return GestureDetector(
       child: Card(
         color: Colors.white.withOpacity(0.2),
-          child: Padding(
-        padding: EdgeInsets.all(10.0),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: <Widget>[
-            Container(
-              width: 48.0,
-              height: 48.0,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                image: DecorationImage(
-                    image:
+        child: Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Container(
+                width: 48.0,
+                height: 48.0,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: DecorationImage(
+                      image:
 //                          players[index].img != null? FileImage(File(contacts[index].img)) :
-                        AssetImage('images/user.png')),
+                          AssetImage('images/user.png')),
+                ),
               ),
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Column(
-              children: <Widget>[
-                Text("Player name", style: TextStyle(color: Colors.white),),
-                Text(
-                  jogador[index].nome,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
-              children: <Widget>[
-                Text("Time", style: TextStyle(color: Colors.white)),
-                Text(
-                  jogador[index].nome_time,
-                  style: TextStyle(fontSize: 16.0, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Column(
-              children: <Widget>[
-                Text("Média Rating",style: TextStyle(color: Colors.white)),
-                Text(
-                  jogador[index].rating,
-                  style: TextStyle(fontSize: 18.0, color: Colors.white, fontWeight: FontWeight.bold),
-                ),
-              ],
-            ),
-          ],
+              SizedBox(
+                width: 15,
+              ),
+              Column(
+                children: <Widget>[
+                  Text(
+                    "Player name",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    jogador[index].nome,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                children: <Widget>[
+                  Text("Time", style: TextStyle(color: Colors.white)),
+                  Text(
+                    jogador[index].nome_time,
+                    style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                children: <Widget>[
+                  Text("Média Rating", style: TextStyle(color: Colors.white)),
+                  Text(
+                    jogador[index].rating,
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
-      )),
+      ),
       onTap: () {
         _showOptions(context, index);
       },
